@@ -14,4 +14,8 @@ let LONGITUDE = "&lon="
 let APP_ID = "&appid="
 let API_KEY = "5723023fa93279c212a57405e2e89f6e"
 
+// for downloadWeatherDetails func (CurrentWeather file)
+// going to tell the func when we are finished downloading
+typealias DownloadComplete = () -> ()
+
 let CURRENT_WEATHER_URL = "\(BASE_URL)\(LATITUDE)35\(LONGITUDE)139\(APP_ID)\(API_KEY)"
