@@ -18,6 +18,7 @@ class CurrentWeather {
     var _date: String!
     var _weatherType: String!
     var _currentTemp: Double!
+    var _weatherIcon: String!
     // for later:  highTemp, lowTemp
     
     var cityName: String {
@@ -58,6 +59,14 @@ class CurrentWeather {
             _currentTemp = 0.0      //because this is a Double
         }
         return _currentTemp
+    }
+    
+    var weatherIcon: String {
+        
+        if _weatherIcon == nil {
+            _weatherIcon = ""
+        }
+        return _weatherIcon
     }
     
     func downloadWeatherDetails(completed: @escaping DownloadComplete) {
@@ -112,6 +121,16 @@ class CurrentWeather {
                         
                         self._currentTemp = kelvinToCelsius
                         print(self._currentTemp)
+                    }
+                }
+                
+                // Get WEATHER ICON ~~
+                if let wIcon = dict["weather"] as? [Dictionary<String, AnyObject>] {
+                    
+                    if let icon = wIcon[0]["icon"] as? String {
+                        
+                        self._weatherIcon = icon
+                        print(self._weatherIcon)
                     }
                 }
                 

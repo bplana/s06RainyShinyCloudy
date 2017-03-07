@@ -17,7 +17,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentWeather = CurrentWeather()   // create a generic class of CurrentWeather
+    var currentWeather = CurrentWeather()   // create a generic class / instance of CurrentWeather
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +28,10 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
 //        print(CURRENT_WEATHER_URL)
         
+        currentWeather = CurrentWeather()
         currentWeather.downloadWeatherDetails {
             
-            // Setup UI to load downloaded data
-            
+            self.updateMainUI()
         }
     
     }
@@ -56,6 +56,15 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
         
         return cell
+    }
+    
+    func updateMainUI() {
+        
+        dateLabel.text = currentWeather.date
+        currentTempLabel.text = "\(currentWeather.currentTemp)°"
+        currentWeatherTypeLabel.text = currentWeather.weatherType
+        locationLabel.text = currentWeather.cityName
+        currentWeatherImage.image = UIImage(named: currentWeather.weatherIcon)
     }
 
 }
