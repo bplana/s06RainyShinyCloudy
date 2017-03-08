@@ -129,7 +129,7 @@ extension Date {
     func dayOfTheWeek() -> String {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"   // EEEE - full name of day of the week
+        dateFormatter.dateFormat = "EEEE, MMM d"   // EEEE - full name of day of the week
         
         return dateFormatter.string(from: self)
     }

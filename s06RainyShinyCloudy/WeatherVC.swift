@@ -77,6 +77,12 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         print(obj)
                     }
                     
+                    // remove 1st indexPath from 'forecasts' array, since that is today's forecast
+                    self.forecasts.remove(at: 0)
+                    
+                    // reload data
+                    self.tableView.reloadData()
+                    
                 }
                 
             }
@@ -96,16 +102,27 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6        // for the rest of the days of the week
+        return forecasts.count        // set # of rows to equal the # of items in our forecasts array (10)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // need to create a cell (dequeueReusableCell (withIdentifier.. for..))
         // -- also need to give storyboard's Table View Cell an identifier, for "withIdentifier" string (below)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
         
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as? WeatherCell {
+            
+            // which forecast to pass in, at which time
+            // pull out one 'forecast' from 'forecasts'(array) -- for each cell that is created, it gets an indexPath
+            let forecast = forecasts[indexPath.row]
+            cell.configureCell(forecast: forecast)
+            return cell
+            
+        } else {        //at least return a blank tableView cell, so app does not crash
+            
+            return WeatherCell()
+        }
+        
     }
     
     func updateMainUI() {
