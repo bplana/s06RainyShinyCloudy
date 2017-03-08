@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -18,6 +19,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     var currentWeather = CurrentWeather()   // create a generic class / instance of CurrentWeather
+    var forecast: Forecast!
+    var forecasts = [Forecast]()       // for func downloadForecastData
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +32,58 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //        print(CURRENT_WEATHER_URL)
         
         currentWeather = CurrentWeather()
+//        forecast = Forecast()       // instatiate an empty Forecast class
+        
         currentWeather.downloadWeatherDetails {
             
-            self.updateMainUI()
+            self.downloadForecastData {
+              self.updateMainUI()
+            }
+            
         }
     
+    }
+    
+    func downloadForecastData(completed: @escaping DownloadComplete) {
+        
+        // download forecast weather data for TableView
+        let forecastURL = URL(string: FORECAST_URL)!
+        
+        Alamofire.request(forecastURL).responseJSON { response in   //whatever response we get in JSON
+            
+            //... we want to capture its result (raw data)
+            let result = response.result
+            
+            //... whatever value of 'result' is, pass in as a Dictionary of String / AnyObject
+            if let dict = result.value as? Dictionary<String, AnyObject> {
+                
+                // API - inside the dictionary, there is an array of dictionaries called "list", and those dictionaries are of String / AnyObject
+                
+                // We are creating a dictionary, that everytime we parse through & find a dictionary in our array, it will run this loop (below), and we will pass in that dictionary ("obj") into another dictionary ("weatherDict")
+                // So, for every forecast/dictionary we find within API's "list", we are adding it to another dictionary elsewhere (need to create an array where this is going to go into)
+                if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
+                    
+                    // pull out min & max temp for week's forecast (individually)
+                    // for loop
+                    // "for every object in our array called list"
+                    for obj in list {
+                        
+                        // ... instantiate Forecast called forecast
+                        // ... we pass in our obj, but put it into 'weatherDict'
+                        
+                        let forecast = Forecast(weatherDict: obj)   // initialize 'weatherDict' in Forecast
+                        self.forecasts.append(forecast)     // adding each forcast into our array 'forecasts'
+                        
+                        print(obj)
+                    }
+                    
+                }
+                
+            }
+            // after the response (from let result = response.result)
+            completed()
+            
+        }
     }
 
     // tableView delegate funcs:

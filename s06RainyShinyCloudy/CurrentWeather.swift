@@ -92,7 +92,7 @@ class CurrentWeather {
                 
                 // Get WEATHER TYPE ~~
                 // in the API, what we want as 'weather' is 'main' - which is in a Dictionary within an array, within "weather"
-                // '= search through the dict, find key called "weather" - cast as an array of Dictionary, with the key being String, and value bring AnyObject'
+                // '= search through the dict, find key called "weather" - cast as an array of Dictionary, with the key being String, and value being AnyObject'
                 if let weather = dict["weather"] as? [Dictionary<String, AnyObject>] {
                     
                     // pull value 'main'

@@ -16,6 +16,7 @@
 		4F7CE41B1E66260E00959372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7CE4191E66260E00959372 /* LaunchScreen.storyboard */; };
 		4FDDBE821E67889C00B7EABE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDBE811E67889C00B7EABE /* Constants.swift */; };
 		4FDDBE841E678B9500B7EABE /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDBE831E678B9500B7EABE /* CurrentWeather.swift */; };
+		4FDDBE861E6F59E300B7EABE /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDBE851E6F59E300B7EABE /* Forecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		4F7CE41C1E66260E00959372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDDBE811E67889C00B7EABE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4FDDBE831E678B9500B7EABE /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		4FDDBE851E6F59E300B7EABE /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		A51383609CE88FF50BFFECA5 /* Pods_s06RainyShinyCloudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_s06RainyShinyCloudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75F4E3C54E3B9310FDE3BFE /* Pods-s06RainyShinyCloudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-s06RainyShinyCloudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-s06RainyShinyCloudy/Pods-s06RainyShinyCloudy.debug.xcconfig"; sourceTree = "<group>"; };
 		D1A01FA430E5F3966BAE8969 /* Pods-s06RainyShinyCloudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-s06RainyShinyCloudy.release.xcconfig"; path = "Pods/Target Support Files/Pods-s06RainyShinyCloudy/Pods-s06RainyShinyCloudy.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		4FDDBE801E664ACE00B7EABE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4FDDBE851E6F59E300B7EABE /* Forecast.swift */,
 				4FDDBE831E678B9500B7EABE /* CurrentWeather.swift */,
 				4F7CE4141E66260E00959372 /* s06RainyShinyCloudy.xcdatamodeld */,
 			);
@@ -248,6 +251,7 @@
 				4FDDBE841E678B9500B7EABE /* CurrentWeather.swift in Sources */,
 				4F7CE4101E66260E00959372 /* WeatherVC.swift in Sources */,
 				4F7CE40E1E66260E00959372 /* AppDelegate.swift in Sources */,
+				4FDDBE861E6F59E300B7EABE /* Forecast.swift in Sources */,
 				4FDDBE821E67889C00B7EABE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
